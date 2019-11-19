@@ -1,12 +1,17 @@
-<!DOCTYPE html>
-<html>
-<head>
-<title>Home</title>
-</head>
-<body>
+{% extends "blog/base.html"  %}
 
-<h1>This is a Heading</h1>
-<p>This is a paragraph.</p>
-
-</body>
-</html>
+{%block content %}
+    <h1>Home page!</h1>
+    {% for post in posts  %}
+        <article class="media content-section">
+            <div class="media-body">
+                <div class="article-metadata">
+                <a class="mr-2" href="#">{{ post.author }}</a>
+                <small class="text-muted">{{ post.date_posted }}</small>
+                </div>
+                <h2><a class="article-title" href="#">{{ post.title }}</a></h2>
+                <p class="article-content">{{ post.content }}</p>
+            </div>
+        </article>
+    {% endfor  %}
+{% endblock content %}
