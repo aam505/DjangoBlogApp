@@ -1,30 +1,17 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from .models import Post
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 
 # This is where you add the logic to how to handle certain routes 
  
-
-posts =[
-    {
-        'author':'Jane Doe',
-        'title':'First blog post',
-        'content':'First post content',
-        'date_posted':'August 27, 2019'
-    },
-    {
-        'author':'Jane Doe',
-        'title':'Second blog post',
-        'content':'Second post content',
-        'date_posted':'August 28, 2019'
-    }
-]
 def home(request):
     context = {
-        'posts':posts
+        'posts': Post.objects.all()
     }
     return render(request,'blog/home.html', context)
 
-
+@login_required     
 def about(request):
     return render(request,'blog/about.html',{'title':'DJANGO'})
