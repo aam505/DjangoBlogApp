@@ -19,6 +19,7 @@ class PostListView(ListView):
     template_name='blog/home.html'
     context_object_name='posts'
     ordering=['-date_posted']
+    paginate_by=2
     #by default itnames the posts variable above as object_list
     #app/module_viewtype.html
 
